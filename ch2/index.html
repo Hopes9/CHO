@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Прогноз погоды</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.1/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.1/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="content.js"></script>
+</head>
+
+<body>
+
+  <h1>Weather</h1>
+  <div id="app"></div>
+  <script type="text/babel">
+    let cards = [{
+      name: "Утро",
+      temp: -15,
+      chance: 50,
+      icon: "https://img.icons8.com/pastel-glyph/64/000000/sunrise--v2.png",
+      color: "#fed049"
+    },
+
+    {
+      name: "День",
+      temp: 10,
+      chance: 30,
+      icon: "https://img.icons8.com/doodle/48/000000/sun--v1.png",
+      color: "#007580"
+    },
+    {
+      name: "Вечер",
+      temp: -30,
+      chance: 40,
+      icon: "https://img.icons8.com/cotton/64/000000/sunset--v4.png",
+      weight: 30,
+      color: "#282846"
+
+    },
+    {
+      name: "Ночь",
+      temp: -45,
+      chance: 60,
+      icon: 'https://img.icons8.com/cotton/64/000000/moon-satellite.png',
+      color: "#faf0e"
+    }
+  ];
+    class Weather_constr extends React.Component {
+      constructor(props) {
+        super(props)
+      }
+      render() {
+        return (
+          <div className="card" class= "item" style={{backgroundColor: this.props.bg}}>
+            <h2 className="cardTitle">{this.props.name}</h2>
+            <img className="cardImg" src={this.props.icon} alt="" />
+            <p className="cardTemp">{this.props.temp}℃</p>
+            <p className="cardChance">{this.props.chance}%</p>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(
+      <div>
+        {
+          cards.map(card => <Weather_constr
+            name={card.name}
+            icon={card.icon}
+            temp={card.temp}
+            chance={card.chance}
+            bg={card.color}
+          />)
+        }
+      </div>,
+      document.getElementById("app")
+    );
+
+  </script>
+</body>
+
+</html>
